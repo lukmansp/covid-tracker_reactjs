@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Moment from 'react-moment';
-import ConfirmedImg from '../img/confirmed.png';
-import RecoveredImg from '../img/recovered.png';
 import DeathImg from '../img/death.png';
 import CountrySearch from '../components/CountrySearch';
 import Confirm from '../components/ConfirmedDisplay.js';
+import Modal from '../components/ModalCek';
+import Map from '../components/Map';
+
 import Mapimage from '../img/workingspace.png';
+import ConfirmedImg from '../img/confirmed.png';
+import RecoveredImg from '../img/recovered.png';
 import deathGlobal from '../img/deathGlobal.png';
 import recoveredGlobal from '../img/recoveredGlobal.png';
 import confirmedGlobal from '../img/confirmedGlobal.png';
-
 class Menu extends Component {
+  static defaultProps = {
+    center: {
+      lat: 59.95,
+      lng: 30.33,
+    },
+    zoom: 11,
+  };
+
   constructor(props) {
     super(props);
     this.getData = this.getData.bind(this);
@@ -72,7 +82,9 @@ class Menu extends Component {
           <div className='row justify-content-center'>
             <div className='col-10 info-panel'>
               <div className='row justify-content-center'>
-                <h2>Indonesia Corona case</h2>
+                <h2>
+                  <strong>Indonesia Corona case</strong>
+                </h2>
               </div>
               <div className='row justify-content-center'>
                 <h6>
@@ -82,7 +94,7 @@ class Menu extends Component {
               <div className='row'>
                 <div className='col-sm'>
                   <img src={ConfirmedImg} />
-                  <Confirm value={this.state.confirmed} />
+                  <h5 className='mt-3'>{this.state.confirmed}</h5>
                   <h4>Confirmed</h4>
                   <p></p>
                 </div>
@@ -101,45 +113,67 @@ class Menu extends Component {
               </div>
             </div>
           </div>
-          <div class='row workingspace'>
-            <div class='col-lg-6'>
-              <img src={Mapimage} alt='Working Space' class='img-fluid' />
+        </div>
+        <div class='row workingspace bg-light p-4 mt-5'>
+          <div class='col-lg-6'>
+            <Map />
+            {/* <img src={Mapimage} alt='Working Space' class='img-fluid' /> */}
+          </div>
+          <div class='col-lg-6'>
+            <div className='row justify-content-center'>
+              <h5>
+                <strong>Global Corona case</strong>
+              </h5>
             </div>
-            <div class='col-lg-6'>
-              <div className='row justify-content-center'>
-                <h5>Global Corona case</h5>
-              </div>
-              <div className='row justify-content-center mb-5'>
-                <h6>
-                  Updated : <Moment>{this.state.globalTimer}</Moment>
+            <div className='row justify-content-center mb-5'>
+              <h6>
+                Updated : <Moment>{this.state.globalTimer}</Moment>
+              </h6>
+            </div>
+            <div className='row justify-content-center mb-5'>
+              <CountrySearch countries={this.state.countries} />
+            </div>
+            <div className='row mb-3'>
+              <div className='col-sm'>
+                <img src={confirmedGlobal} />
+                <h6 className='mt-3'>
+                  <strong>{this.state.globalConfirm}</strong>
                 </h6>
+                <h5>Confirmed</h5>
+                <p></p>
               </div>
-              <div className='row justify-content-center mb-5'>
-                <CountrySearch countries={this.state.countries} />
+              <div className='col-sm'>
+                <img src={recoveredGlobal} />
+                <h6 className='mt-3'>
+                  <strong>{this.state.globalRecovered}</strong>
+                </h6>
+                <h5>Recovered</h5>
+                <p></p>
               </div>
-              <div className='row mb-5'>
-                <div className='col-sm'>
-                  <img src={confirmedGlobal} />
-                  <h5 className='mt-3'>{this.state.globalConfirm}</h5>
-                  <h4>Confirmed</h4>
-                  <p></p>
-                </div>
-                <div className='col-sm'>
-                  <img src={recoveredGlobal} />
-                  <h5 className='mt-3'>{this.state.globalRecovered}</h5>
-                  <h4>Recovered</h4>
-                  <p></p>
-                </div>
-                <div className='col-sm'>
-                  <img src={deathGlobal} />
-                  <h5 className='mt-3'>{this.state.globalDeath}</h5>
-                  <h4>Death</h4>
-                  <p></p>
-                </div>
+              <div className='col-sm'>
+                <img src={deathGlobal} />
+                <h6 className='mt-3'>
+                  <strong>{this.state.globalDeath}</strong>
+                </h6>
+                <h5>Death</h5>
+                <p></p>
               </div>
+            </div>
+            <div className='row justify-content-center'>
+              <button
+                type='button'
+                class='btn btn-primary'
+                data-toggle='modal'
+                data-target='#exampleModal'
+              >
+                Cek your condition
+              </button>
             </div>
           </div>
         </div>
+
+        {/* Modal */}
+        <Modal />
         {/* global corona */}
       </React.Fragment>
     );
