@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
-import ConfirmedDisplay from './ConfirmedDisplay';
-import RecoveredDisplay from './RecoveredDisplay';
-import DeathsDisplay from './DeathsDisplay';
-import Navbar from '../screens/Navbar';
 import CountrySearch from '../components/CountrySearch';
 import Moment from 'react-moment';
 import Confirmed from '../img/confirmed.png';
@@ -13,23 +9,10 @@ import Death from '../img/death.png';
 import Modal from '../components/ModalCek';
 import Map from '../components/Map';
 
-import Mapimage from '../img/workingspace.png';
-import ConfirmedImg from '../img/confirmed.png';
-import RecoveredImg from '../img/recovered.png';
 import deathGlobal from '../img/deathGlobal.png';
 import recoveredGlobal from '../img/recoveredGlobal.png';
 import confirmedGlobal from '../img/confirmedGlobal.png';
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
-
 export default class CountryDisplay extends Component {
-  static defaultProps = {
-    center: {
-      lat: 59.95,
-      lng: 30.33,
-    },
-    zoom: 11,
-  };
-
   state = {
     confirmed: 'loading',
     recovered: 'loading',
@@ -197,6 +180,15 @@ export default class CountryDisplay extends Component {
                 Cek your condition
               </button>
             </div>
+          </div>
+        </div>
+        <div className='row justify-content-center'>
+          <div className='row my-4'>
+            <p>
+              <strong>
+                "Distance means so little, when life means so much"
+              </strong>
+            </p>
           </div>
         </div>
 

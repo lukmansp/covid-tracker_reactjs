@@ -3,11 +3,9 @@ import Axios from 'axios';
 import Moment from 'react-moment';
 import DeathImg from '../img/death.png';
 import CountrySearch from '../components/CountrySearch';
-import Confirm from '../components/ConfirmedDisplay.js';
 import Modal from '../components/ModalCek';
 import Map from '../components/Map';
 
-import Mapimage from '../img/workingspace.png';
 import ConfirmedImg from '../img/confirmed.png';
 import RecoveredImg from '../img/recovered.png';
 import deathGlobal from '../img/deathGlobal.png';
@@ -70,13 +68,7 @@ class Menu extends Component {
     return (
       <React.Fragment>
         <div class='jumbotron jumbotron-fluid'>
-          <div className='container text-primary'>
-            {/* <h1 class='display-4 '>Stay with home!</h1>
-          <p class='lead'>Safe our world together</p>
-          <a class='btn btn-primary btn-lg' href='#' role='button'>
-            Learn more
-          </a> */}
-          </div>
+          <div className='container text-primary'></div>
         </div>
         <div className='container'>
           <div className='row justify-content-center'>
@@ -117,7 +109,6 @@ class Menu extends Component {
         <div class='row workingspace bg-light p-4 mt-5'>
           <div class='col-lg-6'>
             <Map />
-            {/* <img src={Mapimage} alt='Working Space' class='img-fluid' /> */}
           </div>
           <div class='col-lg-6'>
             <div className='row justify-content-center'>
@@ -171,10 +162,16 @@ class Menu extends Component {
             </div>
           </div>
         </div>
-
-        {/* Modal */}
+        <div className='row justify-content-center'>
+          <div className='row my-4'>
+            <p>
+              <strong>
+                "Distance means so little, when life means so much"
+              </strong>
+            </p>
+          </div>
+        </div>
         <Modal />
-        {/* global corona */}
       </React.Fragment>
     );
   }
